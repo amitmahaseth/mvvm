@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.example.mvvm.viewmodel.LoginViewModel" />
+    </data>
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:onTextChanged="@{viewmodel::onEmailChanged}"
+                    android:paddingStart="5dp"
+                    android:text="@={viewmodel.email}"
+                    android:textColor="#383838"
+                    android:textSize="20sp"
+                    app:backgroundTint="#00ce8f" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="password">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:onTextChanged="@{viewmodel::onPasswordChanged}"
+                    android:paddingStart="5dp"
+                    android:text="@={viewmodel.password}"
+                    android:textColor="#383838"
+                    android:textSize="20sp"
+                    app:backgroundTint="#00ce8f" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_continue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:enabled="@{viewmodel.btnSelected}"
+            android:onClick="@{()->viewmodel.login()}"
+            android:text="login" />
+        <Button
+            android:id="@+id/btn_sign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:enabled="@{viewmodel.btnSelected}"
+            android:onClick="@{()->viewmodel.sign()}"
+            android:text="Sign" />
+    </LinearLayout>
+</layout>
